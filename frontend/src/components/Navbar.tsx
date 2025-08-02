@@ -1,7 +1,3 @@
-
-
-
-
 import { ConnectButton } from "@mysten/dapp-kit";
 import { useNavigation } from "../providers/navigation/NavigationContext";
 

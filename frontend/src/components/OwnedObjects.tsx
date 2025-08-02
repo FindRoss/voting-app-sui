@@ -1,28 +1,48 @@
 import { useCurrentAccount, useSuiClientQuery } from "@mysten/dapp-kit"
+import { SuiObject } from "./wallet/SuiObject";
 
 
 
 
 export const OwnedObjects = () => {
-    const account = useCurrentAccount();
-    const { data, error, isPending } = useSuiClientQuery(
-        // type of query, like WP_Query()!!!
-        "getOwnedObjects",
-        {
-            owner: account!.address as string
-        },
-        {
-            enabled: !!account
-        }
-    );
+	const account = useCurrentAccount();
+	const { data: response, error, isPending } = useSuiClientQuery(
+		// Query, like WP_Query
+		"getOwnedObjects",
+		{
+			owner: account?.address as string,
+			options: {
+				showType: true,
+				showOwner: true,
+				showContent: true
+			}
+		},
+		{
+			enabled: !!account
+		}
+	);
 
-    if (!account) return "Cannot retrieve account";
+	if (!account) return "Cannot retrieve account";
+	if (error) return <div className="text-red-500">Error: {error.message}</div>
+	if (isPending || !response) return <div className="text-center text-gray-500">Loading...</div>
 
-    if (error) return <div className="text-red-500"></div>
-
-    return (
-        <div className="flex flex-col my-4 space-y-4">
-
-        </div>
-    )
+	return (
+		<div className="flex flex-col my-4 space-y-4">
+			{response.data.length === 0 ? (
+				<p className="text-gray-700 dark:gray-300">No objects owned by connected wallet</p>
+			) : (
+				<h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+					Objects owned by connected wallet
+				</h2>
+			)}
+			<div className="space-y-2">
+				{response.data.map(objectRes => (
+					<SuiObject
+						key={objectRes.data?.objectId}
+						objectRes={objectRes}
+					/>
+				))}
+			</div>
+		</div>
+	)
 }

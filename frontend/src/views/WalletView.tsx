@@ -1,9 +1,4 @@
-
-
-
-
-import { WalletStatus } from "../components/wallet/status";
-
+import { WalletStatus } from "../components/wallet/Status";
 
 const WalletView = () => {
 
