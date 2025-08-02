@@ -1,0 +1,23 @@
+import { useCurrentAccount } from "@mysten/dapp-kit"
+
+export const WalletStatus = () => {
+	const account = useCurrentAccount();
+
+	return (
+		<div className="my-2 p-4 border rounded-lg bg-grey-100 dark:bg-grey-800">
+			<h2 className="mb-2 text-xl font-bold">Wallet Status</h2>
+			{account ? (
+				<div className="flex flex-col space-y-1">
+					<p className="text-green-700 dark:text-grey-300">Wallet connected</p>
+					<p className="text-green-700 dark:text-grey-300">
+						Address: <span className="font-mono">{account.address}</span>
+					</p>
+				</div>
+			) : (
+				<>
+					<p className="text-green-700 dark:text-grey-300">Wallet not connected</p>
+				</>
+			)}
+		</div>
+	)
+}

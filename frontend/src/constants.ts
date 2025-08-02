@@ -1,0 +1,2 @@
+
+export const TESTNET_PACKAGE_ID = "0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f";

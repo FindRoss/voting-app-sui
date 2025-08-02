@@ -1,0 +1,35 @@
+sui client call \
+  --package 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f \
+  --module dashboard \
+  --function create_proposal \
+  --args "Proposal 1" "Proposal description 1" 1785209317 \
+  --gas-budget 100000000
+
+
+
+sui client ptb \
+  --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal \
+  '"Proposal 2"' \
+  '"Proposal description 2"' \
+  1785209317
+
+
+
+sui client ptb \
+  --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128ffa1f::dashboard::create_proposal \
+  '"Proposal 4"' '"Proposal description 4"' 1785209317 \ 
+  --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal \
+  '"Proposal 5"' '"Proposal description 5"' 1785209317 \ 
+  --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal \
+  '"Proposal 6"' '"Proposal description 6"' 1785209317
+
+sui client ptb --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal '"Proposal 5"' '"Proposal description 5"' 1785209317 --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal '"Proposal 6"' '"Proposal description 6"' 1785209317 --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal '"Proposal 7"' '"Proposal description 7"' 1785209317
+
+sui client ptb \
+  --move-call 0xdcd597a6b5d7ab5d4ede80657822c630233a0a3a35cf0a058c04e2a54128fa1f::dashboard::create_proposal \
+  '"Proposal 7"' '"Proposal description 7"' 1785209317 \
+  --split-coins gas "[1000]" \
+  --assign coin \
+  --transfer-objects "[coin]" @0x4e46aa12b1bba00440ca189f8929d63bcf86c18005ffeccd0fa179ffcc64915b \
+  --gas-budget 100000000
+
